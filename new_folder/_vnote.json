@@ -1,0 +1,28 @@
+{
+    "created_time": "2020-02-18T15:05:58Z",
+    "files": [
+        {
+            "attachment_folder": "",
+            "attachments": [
+            ],
+            "created_time": "2020-02-18T15:07:34Z",
+            "modified_time": "2020-02-18T15:07:34Z",
+            "name": "1. Welcome to Joplin! 🗒️.md",
+            "tags": [
+            ]
+        },
+        {
+            "attachment_folder": "",
+            "attachments": [
+            ],
+            "created_time": "2020-02-18T15:07:34Z",
+            "modified_time": "2020-02-18T15:07:34Z",
+            "name": "Pivoting and Tunneling.md",
+            "tags": [
+            ]
+        }
+    ],
+    "sub_directories": [
+    ],
+    "version": "1"
+}
