@@ -1,8 +1,20 @@
 # SSH
 
+**Links**
+
 https://recipeforroot.com/misconfigured-ssh-keys/
 https://www.ssh.com/ssh/host-key
 http://lerned.wikidot.com/ssh
+
+
+
+**YouTube**
+
+https://www.youtube.com/playlist?list=PLZOToVAK85MpAUfM-VXUREYjnedPyA_6B
+
+https://www.youtube.com/watch?v=m9WtyQ907p0&list=PLZOToVAK85MqxEPGXA80NPMZEczZfA9ej&index=157
+
+
 
 ==the file has to have the right permissions: chmod 600==
 

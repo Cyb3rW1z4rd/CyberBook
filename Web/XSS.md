@@ -6,6 +6,16 @@ https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_A7-Cross-Si
 
 
 
+**YouTube**
+
+https://www.youtube.com/watch?v=3pXeSkM7m3M&list=PLZOToVAK85MoYN8LF4vsGNtgwmLinMnW3
+
+https://www.youtube.com/watch?v=3pXeSkM7m3M&list=PLZOToVAK85MqxEPGXA80NPMZEczZfA9ej&index=60
+
+https://www.youtube.com/watch?v=I0SusAlT1wY&list=PLZOToVAK85MqxEPGXA80NPMZEczZfA9ej&index=63
+
+
+
 ```reStructuredText
 XSS vulnerabilities are caused due to unsanitized user input that is then displayed on a web page in HTML format. These vulnerabilities allow malicious attackers to inject client side scripts, such as JavaScript, into web pages viewed by other users.
 
@@ -75,6 +85,13 @@ nc -nlvp 80
 
 
 ### Exploitation with Beef
+
+https://www.youtube.com/watch?v=gU_zv8HIG2g&list=PLZOToVAK85MqxEPGXA80NPMZEczZfA9ej&index=177
+
+https://www.youtube.com/watch?v=t-44ZsaeIQE&list=PLZOToVAK85MqxEPGXA80NPMZEczZfA9ej&index=199
+
+
+
 Put the hook link in the web page by XSS
 
 

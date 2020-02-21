@@ -1,10 +1,34 @@
+
+
 # SNMP   
 
-#### UDP 161  trap on UDP 162
+> exchange management information between network devices, 161  trap on UDP 162
 
-```reStructuredText
-exchange managemant information between network devices
-```
+
+
+**Links**
+
+https://en.wikipedia.org/wiki/Simple_Network_Management_Protocol
+
+https://www.hackingarticles.in/snmp-lab-setup-and-penetration-testing/
+
+https://www.hackingarticles.in/6-ways-to-hack-snmp-password/
+
+
+
+**YouTube**
+
+
+
+
+
+SNMP v1 - clear text
+
+SNMP v2 -
+
+SNMP v3 - encrypted
+
+
 
 ```bash
 apt-get install snmp-mibs-downloader
@@ -57,6 +81,12 @@ snmp-check -c public -w 192.168.100.1
 
 
 ## Metasploit
+
+https://www.offensive-security.com/metasploit-unleashed/snmp-scan/
+
+https://www.youtube.com/watch?v=j5NtakMaIJg&list=PLZOToVAK85MqxEPGXA80NPMZEczZfA9ej&index=140
+
+
 
 ```
 metasploit modules (auxiliary/scanner/snmp/snmp_login) 

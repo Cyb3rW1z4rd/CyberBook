@@ -1,5 +1,9 @@
 # HTTP[s]
 
+**YouTube**
+
+https://www.youtube.com/watch?v=oy9Ya7NxDUQ&list=PLZOToVAK85MotwF1p0jpwFGVF_i-QMNp0
+
 
 
 **HTTP Status Codes**
@@ -60,6 +64,11 @@ Unicode uses: UTF-8, 16 and 32
 Prevents a script from setting properties of another document comming from a different origin a document can access (through JavaScript) the properties of another document only if they have the same origin
 
 ### Cookies
+
+https://www.youtube.com/watch?v=mEbmturLljU&list=PLZOToVAK85MoBlJKFWznA4EhU--P9X8V7
+
+
+
 Set-Cookie HTTP header field
 can only be set for domain
 path = path within domain eg /downloads. Will not send cookies for /blog or /members
