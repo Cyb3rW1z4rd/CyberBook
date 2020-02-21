@@ -7,7 +7,7 @@
 https://www.restapitutorial.com/httpstatuscodes.html 
 https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 
-==200 ok, 301 moved permanent, 302 found, 403 forbidden, 404 not found, 500 internal server error==
+<!--200 ok, 301 moved permanent, 302 found, 403 forbidden, 404 not found, 500 internal server error-->
 
 > Things to be on look for: Default credentials for software
 > Look into source code or SVN where version info is stored (HTB Writeup)
