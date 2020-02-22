@@ -24,7 +24,7 @@ https://www.hackingarticles.in/6-ways-to-hack-snmp-password/
 
 SNMP v1 - clear text
 
-SNMP v2 -
+SNMP v2 - clear text
 
 SNMP v3 - encrypted
 
@@ -73,7 +73,7 @@ snmpwalk-software-names' = snmpwalk -c public -v 1 {address} 1.3.6.1.2.1.25.6.3.
 snmpwalk-user-accounts' =snmpwalk -c public -v 1 {address} 1.3.6.1.4.1.77.1.2.25
 snmpwalk-tcp-ports'= snmpwalk -c public -v 1 {address} 1.3.6.1.2.1.6.13.1.3
 
-hrSWInstalledName - OID
+hrSWInstalledName - OID [Object Identifier]
 snmpset - for setting values, works like snmpwalk
 snmp-check -c public -w 192.168.100.1
 ```
