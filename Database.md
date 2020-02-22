@@ -36,6 +36,51 @@ mysql -u root -p
 
 
 
+| ## MySQL  Database                                           |
+| ------------------------------------------------------------ |
+| mysql -h 192.168.100.138 -p                                  |
+| show databases;                                              |
+| use databasename;                                            |
+| show tables;                                                 |
+| describe table;                                              |
+| select * from payments [where  id=9];                        |
+| select @@versionl                                            |
+|                                                              |
+| > /G instead of ;  https://stackoverflow.com/questions/924729/how-to-best-display-in-terminal-a-mysql-select-returning-too-many-fields |
+|                                                              |
+| ### Non interactive shell                                    |
+| mysql -uroot -proot -e 'show  databases;'                    |
+| mysql -uroot -proot -e 'use  SkyTech; show tables;'          |
+| mysql -uroot -proot -e 'use  SkyTech; select * from login;'  |
+|                                                              |
+| **ENUM**                                                     |
+| SELECT @@version;                                            |
+| SELECT @@hostname;                                           |
+| SELECT @@datadir;                                            |
+| SELECT user();                                               |
+| SELECT system_user();                                        |
+| SELECT user FROM mysql.user;                                 |
+| SELECT host, user, password  FROM mysql.user;                |
+| SELECT database()                                            |
+|                                                              |
+| **DATABASES**                                                |
+| SHOW DATABASES                                               |
+| SELECT * FROM  information_schema.tables;                    |
+| SELECT schema_name FROM  information_schema.schemata;        |
+| SELECT distinct(db) FROM  mysql.db — priv                    |
+|                                                              |
+| **TABLES**                                                   |
+| SHOW TABLES                                                  |
+| SELECT table_name FROM  information_schema.tables WHERE table_schema != |
+| ‘mysql’ AND table_schema !=  ‘information_schema’            |
+|                                                              |
+| **COLUMNS**                                                  |
+| DESCRIBE table                                               |
+| SELECT column_name FROM  information_schema.columns WHERE table_schema |
+| != ‘mysql’ AND table_schema !=  ‘information_schema’         |
+
+
+
 ## [1433,1434,mssql] UDP 1433,1334
 
 **MS SQL Server Enumeration**
